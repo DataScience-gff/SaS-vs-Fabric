@@ -209,4 +209,8 @@ Dado que la organización se esta **migrando a Azure es un punto clave a conside
 
 -   Facilita la gobernanza centralizada con [Microsoft Purview](https://learn.microsoft.com/en-us/fabric/governance/microsoft-purview-fabric).
 
--   Permite orquestar ciencia de datos, BI, [DataOPs](https://blog.fabric.microsoft.com/en-US/blog/data-operations-in-fabric-data-factory/) y seguridad en una misma infraestructura. \
+-   Permite orquestar ciencia de datos, BI, [DataOPs](https://blog.fabric.microsoft.com/en-US/blog/data-operations-in-fabric-data-factory/) y seguridad en una misma infraestructura.
+
+-   
+
+-   jdnfjdbj v\
