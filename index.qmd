@@ -1,0 +1,216 @@
+---
+title: SAS vs Microsoft Fabric
+subtitle: Evaluación Estratégica para la Plataforma Analítica del Futuro
+format: clean-revealjs
+execute: 
+  echo: true
+  output: true
+code-fold: false
+code-overflow: wrap
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Grupo Financiero Ficohsa 
+    affiliations: Data Science
+date: last-modified
+html: 
+  toc: true
+  code-fold: show
+---
+
+##  {style="font-size: 25px"}
+
+### Objetivo
+
+-   Comparar las capacidades de SAS y Microsoft Fabric.
+
+-   Evaluar su alineación con la estrategia de migración a Azure.
+
+-   Definir criterios técnicos, estratégicos y de gobernanza para la selección.
+
+### Contexto y Motivación
+
+-   Desafíos actuales con analítica centralizada y modelos propietarios.
+
+-   Necesidad de escalar capacidades de ciencia de datos y autoservicio.
+
+-   La organización está migrando activamente hacia Azure.
+
+-   Se busca una plataforma alineada con arquitectura moderna y flexible.
+
+## **Comparativa General** {style="font-size: 20px"}
+
+Ambas opciones SAS y Microsoft Fabric ofrecen enfoques muy distintos para una plataforma de analítica, por lo que la elección depende mucho del enfoque estratégico de la organización, el perfil del equipo, y la integración con los sistemas existentes. Acontinuación les brindo una comparación estructurada para que pueda servir de guia para para la evaluación de ambas herramientas
+
+| Criterio | SAS | Microsoft Fabric |
+|------------------------|------------------------|------------------------|
+| Modelo de Licenciamiento | Licencia propietaria, modular y costosa | Basado en consumo (pay-as-you-go), más flexible. |
+| Escalabilidad | Limitada, principalmente en ambientes on-primes o SAS Cloud | Alta, nativa en Azure y orientada a la nube. |
+| Compatibilidad con Open Source | Limitada, aunque ultimamente presenta mejoras en la interoperabilidad con Python/R | Alta, nativamente compatible con Python, R, Spark |
+| Integración con herramientas modernas | Moderada, requiere adaptadores o módulos | Muy alta, integra Power BI, Azure ML, Excel, Dataverse, SQL Server, Big Query |
+| Gobernanza de datos | Muy robusta, diseñada para entornos regulados | Requiere implementación adicional (ej. Purview) |
+| Facilidad para desarrollo de modelos | Alta, entorno estadístico especializado | Alta, usando notebook, ML pipelines o Power BI |
+| Soporte para regulaciones financieras | Muy alto, ampliamente usado en riesgo, cumplimiento y regulación. | Moderado, aún no es estándar en auditorias regulatorias |
+| Costo total de propietario | Alto, especialmente en instalaciones legacy | Más bajo a largo plazo si se usa eficientemente |
+| Talento disponible | Moderado, comunidad más limitada | Alto, mucha disponibilidad de talento open source y Microsoft |
+| Futuro y Roadmap tecnológico | Estable pero menos alineado con ecosistemas modernos | Muy alineado con el futuro de analítica integrada y autoservicios. |
+
+##  {style="font-size: 20px"}
+
+No se puede asumir que `SaS` y `Microsoft Fabric` ofrecen las mismas funcionalidades, aunque ambos se posicionen como plataformas analíticas. Sus enfoques, fortalezas y limitaciones son muy distintos.
+
+### Resumen clave de diferencias funcionales:
+
+-   **SAS:**\
+    \
+    -   Fuerte en estadística avanzada, análisis regulado, y gobierno centralizado.\
+    -   Históricamente dominante en banca, seguros, y sectores regulados.\
+    -   Menor flexibilidad en integración con herramientas modernas.\
+    -   Propietario, costoso y con menor comunidad open source.
+-   **Microsoft Fabric:**\
+    -   Plataforma **`moderna`**, **`abierta y unificada`** para BI, ingeniería de datos y ciencia de datos.\
+    -   Apuesta a la democratización del análisis y autoservicio.\
+    -   Ideal para empresas que ya usan Azure, Power BI y Office 365.\
+    -   Más débil en modelos regulatorios preconstruidos (como stress testing, PD/LGD por defecto).
+
+## **Comparativa Python en SAS vs Fabric** {style="font-size: 20px"}
+
+::::: columns
+::: {.column style="font-size:15px"}
+Aunque `SAS` ha incorporado soporte para python mediante su motor **SWAT (SAS Scripting Wrapper for Analytics Transfer)** y puede interactuar con librerías como `Pandas` o `Scikit-Learn`, **sigue existiendo limitación comparado con el Python que puedes usar en Microsoft Fabric.**
+
+Aquí detallo por qué:
+
+#### Libertad del entorno
+
+-   **SAS:**\
+    \
+
+    -   Ejecutas Python dentro del entorno SAS, lo que significa que estás limitado por lo que SAS permite exponer.\
+    -   No siempre puedes usar todas las librerías de Python libremente (por ejemplo, algunas versiones específicas de [PyTorch](https://pytorch.org/), [TensorFlow](https://www.tensorflow.org/?hl=es-419) o [XGBoost](https://xgboost.readthedocs.io/en/release_3.0.0/) podrían no estar disponible o integradas fácilmente).\
+    -   Está mñas enfocado a que uses SAS con algo de Python, no al revés.
+
+-   **Microsoft Fabric (**[Synapse](https://azure.microsoft.com/es-es/products/synapse-analytics)**/**[Notebooks](https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook)**):**\
+    \
+
+    -   Usas python nativamente, en un entorno compatible con Spark.\
+    -   Puedes usar cualquier librería del ecosistema Python, incluidos frameworks modernos de IA generativa, MLOps, visualización, etc.\
+    -   Muho más flexible para desarrolladores cientificos de datos modernos.
+:::
+
+::: {.column style="font-size:15px"}
+#### Flujo de trabajo y MLOps
+
+-   **SAS:**\
+    \
+    -   Tiene su propio ciclo de vida de modelos, pero es menos abierto.\
+    -   Se adapta bien a equipos tradicionales y estructuras regulatorias.
+-   **Microsoft Fabric**\
+    \
+    -   Puedes integrar MLflow, GitHub Actions, Azure ML, y pipelines reproducibles.\
+    -   Ideal para proyectos colaborativos, CI/CD de modelos, y experimentación iterativa.
+
+#### Comunidad y soporte
+
+-   Python en `Microsoft Fabric` es completamente open source, con acceso a toda la comunidad de desarrolladores.
+
+-   En `SAS`, aunque hay documentación, muchas veces depende de soporte de SAS o licencias adicionales para funcionalidades avanzadas.
+
+#### Conclusión
+
+Aunque SAS ha dado pasos importantes para incorporar Python, sigue siendo un entorno **cerrado y con barreras técnicas** si lo comparas con **la libertad, escalabilidad y compatibilidad total que tienes con Python en Microsoft Fabric.**
+:::
+:::::
+
+## **Conectividad e integración de datos** {style="font-size: 20px"}
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### **Fabric**
+
+Fabric (y por extensión Power BI, [Synapse](https://azure.microsoft.com/en-us/products/synapse-analytics) y [OneLake](https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview)) ofrece conectividad nativa y extensa a:
+
+-   **Bases de datos:** SQL Server, PostgreSQL, MySQL, Oracle, SAP HANA, IBM DB2, etc.
+
+-   **Servicios en la nube:** Azure Data Lake, AWS S3, Google BigQuery, Snowflake, Databrick, etc.
+
+-   **Aplicaciones empresariales:** Dynamics 365, Salesforce, SAP BW, ServiceNOW, SharePoint, etc.
+
+-   **Archivos y APIs:** JSON, CSV, Excel, Parquet, XML, Web APIs (REST), OData, etc.
+
+-   **Servicios de Streaming:** Event Hub, kafka, IoT Hub, etc.
+
+Y todo esto en modalidad **low-code/no-code (permite pasar al resultado sin tener que escribir código complejo o depender 100% de programadores)**, fácilmente integrable desde Power Query, Dataflows, o pipelines en Fabric
+
+**Ejemplo Concreto**
+
+Si quisieras crear un flujo que:
+
+-   Extrae datos des [Snowflake](https://www.microsoft.com/en-us/microsoft-fabric/blog/2024/05/22/snowflake-and-microsoft-announce-expansion-of-their-partnership/) (ejecuta consultas SQL y ayuda a traer esos datos a otro entorno), los transforma en Python,
+
+-   los guarda en [OneLake](https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview) y
+
+-   Los visualiza en Power BI,
+
+**Fabric lo hace de extremo a extremo sin salir de la plataforma**. En **SAS**, necesitarías integraciones externas, servidores intermedios o conectores licenciados adicionales.
+:::
+
+::: {.column style="font-size:15px"}
+#### SAS
+
+SAS también tiene conectores, pero con las siguientes **limitaciones**:
+
+-   Requere **modulos licenciados por separado** para conectores avanzados (Como SAS/ACCESS para Oracle, Hadoop, ODBC, etc).
+
+-   Menor soporte para **servicios cloud de terceros** (como AWS S3 o Google BigQuery)
+
+-   No es tan abierto a **APIs REST** o conectividad web moderna.
+
+-   Integra bien con ambientes tradicionales (mainframes, bases de datos legacy), pero no tiene la misma **agilidad** para pipiline modernos.
+
+#### Conclusión
+
+-   **Microsoft Fabric** es mucho más fuerte para un enfoque moderno de **Data Integration + Analytics + IA + BI**, gracias a su ecosistema de conectores abiertos y actualizados continuamente.
+
+-   **SAS** es sólido para ambientes cerrados y regulados, pero menos flexible para integración rápida o heterogénea.
+:::
+:::::
+
+## **¿Tendencias del Mercado?** {style="font-size: 20px"}
+
+**Microsoft Fabric está ganando mucho terreno** por ser parte del ecosistema Azure y por su enfoque en la nube, integración de datos, escalabilidad y costo flexible. Fabric **está alineado con las tendencias modernas** de:
+
+-   DataOps (Automatización + calidad + trazabilidad de datos) y colaboración multifuncional (todos los equipos pueden trabajar en conjunto y sobre los mismos datos, cada quien con su herramienta preferida, pero sin duplicidades ni inconsistencias).
+
+-   Análisis en tiempo real y autoservicio.
+
+-   Integración nativa con IA generativa (Copilot)
+
+-   Reducción del "lock-in" tecnológico (se refiere a disminuir la dependencia exclusiva de un proveedor, de manera que una organización tenga más libertad de cambiar, integrar o evolucionar su arquitectura tecnológica sin enfrentar altos costos o restricciones).
+
+**SaS, aunque sigue siendo fuerte en instituciones conservadoras**, está perdiendo presencia en organizaciones que priorizan **agilidad, open source, y modernización cloud-firts.**
+
+**Referencias:**
+
+1.  <https://www.pwc.com/us/en/technology/alliances/library/future-of-microsoft-fabric-and-enterprise-innovation.html>
+
+2.  <https://www.hso.com/blog/solving-data-challenges-in-financial-services-with-microsoft-fabric-insights-for-ctos>
+
+3.  <https://www.bjss.com/articles/ignite-2024-microsoft-fabric-announcements>
+
+4.  <https://www.hurix.com/blogs/why-microsoft-fabric-will-be-every-businesss-go-to-data-platform-in-2025/>
+
+## **Migración Azure** {style="font-size: 20px"}
+
+Dado que la organización se esta **migrando a Azure es un punto clave a considerar y a favor de Microsoft Fabirc**, ya que:
+
+-   Es nativamente parte del ecosistema Azure (con integración directa con [OneLake](https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview), [Synapse](https://learn.microsoft.com/en-us/fabric/data-factory/connector-azure-synapse-analytics), Power BI, [Azure ML](https://learn.microsoft.com/en-us/fabric/data-factory/azure-machine-learning-activity), etc)
+
+-   Facilita la gobernanza centralizada con [Microsoft Purview](https://learn.microsoft.com/en-us/fabric/governance/microsoft-purview-fabric).
+
+-   Permite orquestar ciencia de datos, BI, [DataOPs](https://blog.fabric.microsoft.com/en-US/blog/data-operations-in-fabric-data-factory/) y seguridad en una misma infraestructura.
+
+-   
+
+-   jdnfjdbj v\
